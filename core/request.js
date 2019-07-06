@@ -385,12 +385,10 @@ Request.prototype.init = function (options) {
     )
   }
 
-  if (self.gzip && !self.hasHeader('accept-encoding')) {
-    self.setHeader('accept-encoding', 'gzip, deflate')
-  }
-
   if (self.gzipOrBrotli && !self.hasHeader('accept-encoding')) {
     self.setHeader('accept-encoding', 'br, gzip, deflate')
+  } else if (self.gzip && !self.hasHeader('accept-encoding')) {
+    self.setHeader('accept-encoding', 'gzip, deflate')
   }
 
   if (self.uri.auth && !self.hasHeader('authorization')) {
@@ -1024,7 +1022,7 @@ Request.prototype.onRequestResponse = function (response) {
     }
 
     var responseContent
-    if (self.gzip && !noBody(response.statusCode)) {
+    if ((self.gzip || self.gzipOrBrotli) && !noBody(response.statusCode)) {
       var contentEncoding = response.headers['content-encoding'] || 'identity'
       contentEncoding = contentEncoding.trim().toLowerCase()
 
@@ -1038,7 +1036,7 @@ Request.prototype.onRequestResponse = function (response) {
       }
 
       if (contentEncoding === 'br') {
-          responseContent = decompressStream
+          responseContent = decompressStream()
           response.pipe(responseContent)
       } else if (contentEncoding === 'gzip') {
         responseContent = zlib.createGunzip(zlibOptions)

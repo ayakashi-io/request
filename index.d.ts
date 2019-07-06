@@ -158,7 +158,7 @@ declare namespace request {
         rejectUnauthorized?: boolean;
         time?: boolean;
         gzip?: boolean;
-        gzipOrBrotli?; boolean;
+        gzipOrBrotli?: boolean;
         preambleCRLF?: boolean;
         postambleCRLF?: boolean;
         withCredentials?: boolean;
@@ -267,7 +267,7 @@ declare namespace request {
         rejectUnauthorized?: boolean;
         time?: boolean;
         gzip?: boolean;
-        gzipOrBrotli?; boolean;
+        gzipOrBrotli?: boolean;
         preambleCRLF?: boolean;
         postambleCRLF?: boolean;
         withCredentials?: boolean;
