@@ -26,3 +26,16 @@ const body = await request.get('https://www.google.com', {
     gzipOrBrotli: true
 });
 ```
+
+## Using the callback-based interface
+
+Require `@ayakashi/request/core` instead of `@ayakashi/request`.  
+Brotli is available here as well.
+
+```js
+const request = require("@ayakashi/request/core");
+
+request.get('https://www.google.com', {gzipOrBrotli: true}, function(err, resp, body) {
+    console.log(body);
+});
+```
