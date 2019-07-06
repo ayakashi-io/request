@@ -36,33 +36,33 @@ declare namespace request {
         (uri: string, callback?: RequestCallback): TRequest;
         (options: TUriUrlOptions & TOptions, callback?: RequestCallback): TRequest;
 
-        get(uri: string, options?: TOptions): Promise<any>;
-        get(uri: string): Promise<any>;
-        get(options: TUriUrlOptions & TOptions): Promise<any>;
+        get(uri: string, options?: TOptions, callback?: RequestCallback): TRequest;
+        get(uri: string, callback?: RequestCallback): TRequest;
+        get(options: TUriUrlOptions & TOptions, callback?: RequestCallback): TRequest;
 
-        post(uri: string, options?: TOptions): Promise<any>;
-        post(uri: string): Promise<any>;
-        post(options: TUriUrlOptions & TOptions): Promise<any>;
+        post(uri: string, options?: TOptions, callback?: RequestCallback): TRequest;
+        post(uri: string, callback?: RequestCallback): TRequest;
+        post(options: TUriUrlOptions & TOptions, callback?: RequestCallback): TRequest;
 
-        put(uri: string, options?: TOptions): Promise<any>;
-        put(uri: string): Promise<any>;
-        put(options: TUriUrlOptions & TOptions): Promise<any>;
+        put(uri: string, options?: TOptions, callback?: RequestCallback): TRequest;
+        put(uri: string, callback?: RequestCallback): TRequest;
+        put(options: TUriUrlOptions & TOptions, callback?: RequestCallback): TRequest;
 
-        head(uri: string, options?: TOptions): Promise<any>;
-        head(uri: string): Promise<any>;
-        head(options: TUriUrlOptions & TOptions): Promise<any>;
+        head(uri: string, options?: TOptions, callback?: RequestCallback): TRequest;
+        head(uri: string, callback?: RequestCallback): TRequest;
+        head(options: TUriUrlOptions & TOptions, callback?: RequestCallback): TRequest;
 
-        patch(uri: string, options?: TOptions): Promise<any>;
-        patch(uri: string): Promise<any>;
-        patch(options: TUriUrlOptions & TOptions): Promise<any>;
+        patch(uri: string, options?: TOptions, callback?: RequestCallback): TRequest;
+        patch(uri: string, callback?: RequestCallback): TRequest;
+        patch(options: TUriUrlOptions & TOptions, callback?: RequestCallback): TRequest;
 
-        del(uri: string, options?: TOptions): Promise<any>;
-        del(uri: string): Promise<any>;
-        del(options: TUriUrlOptions & TOptions): Promise<any>;
+        del(uri: string, options?: TOptions, callback?: RequestCallback): TRequest;
+        del(uri: string, callback?: RequestCallback): TRequest;
+        del(options: TUriUrlOptions & TOptions, callback?: RequestCallback): TRequest;
 
-        delete(uri: string, options?: TOptions): Promise<any>;
-        delete(uri: string): Promise<any>;
-        delete(options: TUriUrlOptions & TOptions): Promise<any>;
+        delete(uri: string, options?: TOptions, callback?: RequestCallback): TRequest;
+        delete(uri: string, callback?: RequestCallback): TRequest;
+        delete(options: TUriUrlOptions & TOptions, callback?: RequestCallback): TRequest;
 
         initParams(uri: string, options?: TOptions, callback?: RequestCallback): RequiredUriUrl & TOptions;
         initParams(uriOrOpts: string | RequiredUriUrl & TOptions, callback?: RequestCallback): RequiredUriUrl & TOptions;
@@ -80,40 +80,40 @@ declare namespace request {
         defaults(options: TOptions): DefaultUriUrlRequestApi<TRequest, TOptions, OptionalUriUrl>;
         (callback?: RequestCallback): TRequest;
 
-        get(uri: string, options?: TOptions): Promise<any>;
-        get(uri: string): Promise<any>;
-        get(options: TUriUrlOptions & TOptions): Promise<any>;
-        get(callback?: RequestCallback): Promise<any>;
+        get(uri: string, options?: TOptions, callback?: RequestCallback): TRequest;
+        get(uri: string, callback?: RequestCallback): TRequest;
+        get(options: TUriUrlOptions & TOptions, callback?: RequestCallback): TRequest;
+        get(callback?: RequestCallback): TRequest;
 
-        post(uri: string, options?: TOptions): Promise<any>;
-        post(uri: string): Promise<any>;
-        post(options: TUriUrlOptions & TOptions): Promise<any>;
-        post(callback?: RequestCallback): Promise<any>;
+        post(uri: string, options?: TOptions, callback?: RequestCallback): TRequest;
+        post(uri: string, callback?: RequestCallback): TRequest;
+        post(options: TUriUrlOptions & TOptions, callback?: RequestCallback): TRequest;
+        post(callback?: RequestCallback): TRequest;
 
-        put(uri: string, options?: TOptions): Promise<any>;
-        put(uri: string): Promise<any>;
-        put(options: TUriUrlOptions & TOptions): Promise<any>;
-        put(callback?: RequestCallback): Promise<any>;
+        put(uri: string, options?: TOptions, callback?: RequestCallback): TRequest;
+        put(uri: string, callback?: RequestCallback): TRequest;
+        put(options: TUriUrlOptions & TOptions, callback?: RequestCallback): TRequest;
+        put(callback?: RequestCallback): TRequest;
 
-        head(uri: string, options?: TOptions): Promise<any>;
-        head(uri: string): Promise<any>;
-        head(options: TUriUrlOptions & TOptions): Promise<any>;
-        head(callback?: RequestCallback): Promise<any>;
+        head(uri: string, options?: TOptions, callback?: RequestCallback): TRequest;
+        head(uri: string, callback?: RequestCallback): TRequest;
+        head(options: TUriUrlOptions & TOptions, callback?: RequestCallback): TRequest;
+        head(callback?: RequestCallback): TRequest;
 
-        patch(uri: string, options?: TOptions): Promise<any>;
-        patch(uri: string): Promise<any>;
-        patch(options: TUriUrlOptions & TOptions): Promise<any>;
-        patch(callback?: RequestCallback): Promise<any>;
+        patch(uri: string, options?: TOptions, callback?: RequestCallback): TRequest;
+        patch(uri: string, callback?: RequestCallback): TRequest;
+        patch(options: TUriUrlOptions & TOptions, callback?: RequestCallback): TRequest;
+        patch(callback?: RequestCallback): TRequest;
 
-        del(uri: string, options?: TOptions): Promise<any>;
-        del(uri: string): Promise<any>;
-        del(options: TUriUrlOptions & TOptions): Promise<any>;
-        del(callback?: RequestCallback): Promise<any>;
+        del(uri: string, options?: TOptions, callback?: RequestCallback): TRequest;
+        del(uri: string, callback?: RequestCallback): TRequest;
+        del(options: TUriUrlOptions & TOptions, callback?: RequestCallback): TRequest;
+        del(callback?: RequestCallback): TRequest;
 
-        delete(uri: string, options?: TOptions): Promise<any>;
-        delete(uri: string): Promise<any>;
-        delete(options: TUriUrlOptions & TOptions): Promise<any>;
-        delete(callback?: RequestCallback): Promise<any>;
+        delete(uri: string, options?: TOptions, callback?: RequestCallback): TRequest;
+        delete(uri: string, callback?: RequestCallback): TRequest;
+        delete(options: TUriUrlOptions & TOptions, callback?: RequestCallback): TRequest;
+        delete(callback?: RequestCallback): TRequest;
     }
 
     interface CoreOptions {
@@ -168,10 +168,6 @@ declare namespace request {
         ca?: string | Buffer | string[] | Buffer[];
         har?: HttpArchiveRequest;
         useQuerystring?: boolean;
-        simple?: boolean;
-        transform?: (body: any, response: request.Response, resolveWithFullResponse?: boolean) => any;
-        transform2xxOnly?: boolean;
-        resolveWithFullResponse?: boolean;
     }
 
     interface UriOptions {

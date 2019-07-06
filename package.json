@@ -22,6 +22,9 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
+    "@types/caseless": "^0.12.2",
+    "@types/form-data": "^2.2.1",
+    "@types/tough-cookie": "^2.3.5",
     "aws-sign2": "~0.7.0",
     "aws4": "^1.8.0",
     "caseless": "~0.12.0",
