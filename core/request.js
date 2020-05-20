@@ -29,6 +29,14 @@ var Redirect = require('./lib/redirect').Redirect
 var Tunnel = require('./lib/tunnel').Tunnel
 var now = require('performance-now')
 var Buffer = require('safe-buffer').Buffer
+var semver = require('semver')
+
+var createBrotliDecompress;
+if (semver.gte(process.version, '10.16.0')) {
+  createBrotliDecompress = zlib.createBrotliDecompress;
+} else {
+  createBrotliDecompress = require('iltorb').decompressStream;
+}
 
 var safeStringify = helpers.safeStringify
 var isReadStream = helpers.isReadStream
@@ -37,8 +45,6 @@ var defer = helpers.defer
 var copy = helpers.copy
 var version = helpers.version
 var globalCookieJar = cookies.jar()
-
-const { decompressStream } = require('iltorb')
 
 var globalPool = {}
 
@@ -1031,12 +1037,20 @@ Request.prototype.onRequestResponse = function (response) {
       // by common browsers.
       // Always using Z_SYNC_FLUSH is what cURL does.
       var zlibOptions = {
-        flush: zlib.Z_SYNC_FLUSH,
-        finishFlush: zlib.Z_SYNC_FLUSH
+        flush: zlib.constants.Z_SYNC_FLUSH,
+        finishFlush: zlib.constants.Z_SYNC_FLUSH
       }
 
       if (contentEncoding === 'br') {
-          responseContent = decompressStream()
+          if (semver.gte(process.version, '10.16.0')) {
+            zlibOptions = {
+              flush: zlib.constants.BROTLI_OPERATION_FLUSH,
+              finishFlush: zlib.constants.BROTLI_OPERATION_FLUSH
+            }
+            responseContent = createBrotliDecompress(zlibOptions)
+          } else {
+            responseContent = createBrotliDecompress()
+          }
           response.pipe(responseContent)
       } else if (contentEncoding === 'gzip') {
         responseContent = zlib.createGunzip(zlibOptions)

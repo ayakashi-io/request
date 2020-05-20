@@ -2,9 +2,16 @@
 
 var request = require('../index')
 var http = require('http')
-var {compress} = require("iltorb");
 var assert = require('assert')
 var tape = require('tape')
+var semver = require('semver')
+
+var compress;
+if (semver.gte(process.version, '10.16.0')) {
+  compress = require("zlib").brotliCompress;
+} else {
+  compress = require('iltorb').compress;
+}
 
 var testContent = 'Compressible response content.\n'
 var testContentBig
