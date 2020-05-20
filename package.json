@@ -6,7 +6,7 @@
   "types": "index.d.ts",
   "scripts": {
     "test": "mocha core/tests/test-*.js && mocha promise/test/spec/**/*.js",
-    "postinstall": "node -e 'var semver = require(\"semver\");process.exit(semver.lt(process.version, \"10.16.0\"));' || npm install --no-save iltorb@2.4.5"
+    "postinstall": "node -e ' var semver = require(\"semver\");process.exit(semver.lt(process.version, \"10.16.0\"));' || npm install --no-save iltorb@2.4.5"
   },
   "keywords": [
     "http",
