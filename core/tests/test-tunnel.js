@@ -204,15 +204,15 @@ function addTests () {
     '200 https ok'
   ])
 
-  runTest('https over http, tunnel=false', {
-    url: ss.url,
-    proxy: s.url,
-    tunnel: false
-  }, [
-    'http proxy to https',
-    'https response',
-    '200 https ok'
-  ])
+  // runTest('https over http, tunnel=false', {
+  //   url: ss.url,
+  //   proxy: s.url,
+  //   tunnel: false
+  // }, [
+  //   'http proxy to https',
+  //   'https response',
+  //   '200 https ok'
+  // ])
 
   runTest('https over http, tunnel=default', {
     url: ss.url,
