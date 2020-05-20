@@ -1,6 +1,6 @@
 {
   "name": "@ayakashi/request",
-  "version": "2.88.5",
+  "version": "2.88.6",
   "description": "Simplified HTTP request client.",
   "main": "index.js",
   "types": "index.d.ts",
