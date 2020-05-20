@@ -22,7 +22,6 @@ jobs:
     - name: npm install, build and test
       run: |
         npm install
-        npx tslint -p ./
         npm run test
       env:
         CI: true
