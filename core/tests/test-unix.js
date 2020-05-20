@@ -1,4 +1,7 @@
 'use strict'
+if (process.platform === "win32") {
+  return true;
+}
 
 var request = require('../index')
 var http = require('http')
