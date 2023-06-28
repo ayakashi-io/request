@@ -29,14 +29,8 @@ var Redirect = require('./lib/redirect').Redirect
 var Tunnel = require('./lib/tunnel').Tunnel
 var now = require('performance-now')
 var Buffer = require('safe-buffer').Buffer
-var semver = require('semver')
 
-var createBrotliDecompress;
-if (semver.gte(process.version, '10.16.0')) {
-  createBrotliDecompress = zlib.createBrotliDecompress;
-} else {
-  createBrotliDecompress = require('iltorb').decompressStream;
-}
+var createBrotliDecompress = zlib.createBrotliDecompress;
 
 var safeStringify = helpers.safeStringify
 var isReadStream = helpers.isReadStream
@@ -1042,16 +1036,12 @@ Request.prototype.onRequestResponse = function (response) {
       }
 
       if (contentEncoding === 'br') {
-          if (semver.gte(process.version, '10.16.0')) {
-            zlibOptions = {
-              flush: zlib.constants.BROTLI_OPERATION_FLUSH,
-              finishFlush: zlib.constants.BROTLI_OPERATION_FLUSH
-            }
-            responseContent = createBrotliDecompress(zlibOptions)
-          } else {
-            responseContent = createBrotliDecompress()
-          }
-          response.pipe(responseContent)
+        zlibOptions = {
+          flush: zlib.constants.BROTLI_OPERATION_FLUSH,
+          finishFlush: zlib.constants.BROTLI_OPERATION_FLUSH
+        }
+        responseContent = createBrotliDecompress(zlibOptions)
+        response.pipe(responseContent)
       } else if (contentEncoding === 'gzip') {
         responseContent = zlib.createGunzip(zlibOptions)
         response.pipe(responseContent)

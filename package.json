@@ -1,12 +1,11 @@
 {
   "name": "@ayakashi/request",
-  "version": "2.88.6",
+  "version": "2.88.7",
   "description": "Simplified HTTP request client.",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "test": "mocha core/tests/test-*.js && mocha promise/test/spec/**/*.js",
-    "postinstall": "node scripts/postInstall.js || npm install --no-save iltorb@2.4.5"
+    "test": "mocha core/tests/test-*.js && mocha promise/test/spec/**/*.js"
   },
   "keywords": [
     "http",
